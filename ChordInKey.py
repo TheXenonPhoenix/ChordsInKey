@@ -39,22 +39,24 @@ def userInput(str, lst):
         sys.exit()
     return val
 
-def findSecondaryDominates(shiftedNotes, scale):
-    dim = 6  # Chords location of the diminished of mode
-    for count in range(1,7):    # Starts after the root
-        if count == dim: continue    # Does not run on the diminished chord
+# var shiftedNotes - all the notes shifted by the current key
+# var scale - the notes in the current key
+# var dim - chord location of the diminished chord in the working mode
+def findSecondaryDominates(shiftedNotes, scale, dim):
+    for count in range(1,7):        # Starts after the root
+        if count == dim: continue   # Does not run on the diminished chord
         chordTone = shiftedNotes.index(scale[count])
         chord = (shiftedNotes[(chordTone+fifth)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+4)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+7)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+10)%len(shiftedNotes)])
         print("The Secondary Dominate of the " + str(count + 1) + " chord is: " + str(chord))
 
 def main():
     key = userInput("Key", notes)
-    mode = "Major" # userInput("Mode", modes) ##### Commenting out to run on alpha version
+    mode = "Major"                  # userInput("Mode", modes) ##### Commenting out to run on alpha version
 
     print("Here are the chords in " + key, mode)
 
-    shiftKeys = deque(notes)         # Allows you to change the root notes of the key
-    shiftVal = notes.index(key)      # Gets the amount that the notes have to be shifted by
+    shiftKeys = deque(notes)        # Allows you to change the root notes of the key
+    shiftVal = notes.index(key)     # Gets the amount that the notes have to be shifted by
     shiftKeys.rotate(-shiftVal)     # Shifts the notes to get correct root note
 
     scale = notesInScale(modes.get(mode), shiftKeys) 
@@ -65,7 +67,8 @@ def main():
 
     shiftedNotes = list(shiftKeys)
 
-    findSecondaryDominates(shiftedNotes, scale)
+    dim = 6
+    findSecondaryDominates(shiftedNotes, scale, dim)
     
 main()
-time.sleep(10)
+#time.sleep(10)
