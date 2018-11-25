@@ -71,4 +71,4 @@ def main():
     findSecondaryDominates(shiftedNotes, scale, dims.get(mode))
     
 main()
-#time.sleep(10)
+time.sleep(10)
