@@ -39,6 +39,14 @@ def userInput(str, lst):
         sys.exit()
     return val
 
+def findSecondaryDominates(shiftedNotes, scale):
+    dim = 6  # Chords location of the diminished of mode
+    for count in range(1,7):    # Starts after the root
+        if count == dim: continue    # Does not run on the diminished chord
+        chordTone = shiftedNotes.index(scale[count])
+        chord = (shiftedNotes[(chordTone+fifth)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+4)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+7)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+10)%len(shiftedNotes)])
+        print("The Secondary Dominate of the " + str(count + 1) + " chord is: " + str(chord))
+
 def main():
     key = userInput("Key", notes)
     mode = "Major" # userInput("Mode", modes) ##### Commenting out to run on alpha version
@@ -57,12 +65,7 @@ def main():
 
     shiftedNotes = list(shiftKeys)
 
-    majDim = 6  # Chords location of the diminished of mode
-    for count in range(1,7):    # Starts after the root
-        if count == majDim: continue    # Does not run on the diminished chord
-        chordTone = shiftedNotes.index(scale[count])
-        chord = (shiftedNotes[(chordTone+fifth)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+4)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+7)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+10)%len(shiftedNotes)])
-        print("The Secondary Dominate of the " + str(count + 1) + " chord is: " + str(chord))
+    findSecondaryDominates(shiftedNotes, scale)
     
 main()
 time.sleep(10)
