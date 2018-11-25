@@ -1,4 +1,4 @@
-import sys
+import sys, time
 from collections import deque
 
 #region Global Variables
@@ -41,7 +41,7 @@ def userInput(str, lst):
 
 def main():
     key = userInput("Key", notes)
-    mode = userInput("Mode", modes)
+    mode = "Major" # userInput("Mode", modes) ##### Commenting out to run on alpha version
 
     print("Here are the chords in " + key, mode)
 
@@ -65,3 +65,4 @@ def main():
         print("The Secondary Dominate of the " + str(count + 1) + " chord is: " + str(chord))
     
 main()
+time.sleep(10)
