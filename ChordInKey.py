@@ -21,7 +21,6 @@ fifth = 7
 
 #endregion
 
-# 
 # Returns the notes of the mode starting at the root note
 def notesInScale(mode, shiftKeys):
     scale = []
@@ -40,29 +39,29 @@ def userInput(str, lst):
         sys.exit()
     return val
 
-key = userInput("Key", notes)
-mode = userInput("Mode", modes)
+def main():
+    key = userInput("Key", notes)
+    mode = userInput("Mode", modes)
 
-print("Here are the chords in " + key, mode)
+    print("Here are the chords in " + key, mode)
 
-shiftKeys = deque(notes)         # Allows you to change the root notes of the key
-shiftVal = notes.index(key)      # Gets the amount that the notes have to be shifted by
-shiftKeys.rotate(-shiftVal)     # Shifts the notes to get correct root note
+    shiftKeys = deque(notes)         # Allows you to change the root notes of the key
+    shiftVal = notes.index(key)      # Gets the amount that the notes have to be shifted by
+    shiftKeys.rotate(-shiftVal)     # Shifts the notes to get correct root note
 
-scale = notesInScale(modes.get(mode), shiftKeys) 
+    scale = notesInScale(modes.get(mode), shiftKeys) 
 
-for count in range(len(scale)):
-    chord = (scale[(count+0)%len(scale)], scale[(count+2)%len(scale)], scale[(count+4)%len(scale)])
-    print("The " + str(count + 1) + " chord is: " + str(chord))
+    for count in range(len(scale)):
+        chord = (scale[(count+0)%len(scale)], scale[(count+2)%len(scale)], scale[(count+4)%len(scale)])
+        print("The " + str(count + 1) + " chord is: " + str(chord))
 
-#print(scale)
-shiftedNotes = list(shiftKeys)
-#print(shiftedNotes)
+    shiftedNotes = list(shiftKeys)
 
-majDim = 6  # Chords location of the diminished of mode
-for count in range(1,7):    # Starts after the root
-    if count == majDim: continue    # Does not run on the diminished chord
-    chordTone = shiftedNotes.index(scale[count])
-    chord = (shiftedNotes[(chordTone+fifth)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+4)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+7)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+10)%len(shiftedNotes)])
-    print("The Secondary Dominate of the " + str(count + 1) + " chord is: " + str(chord))
+    majDim = 6  # Chords location of the diminished of mode
+    for count in range(1,7):    # Starts after the root
+        if count == majDim: continue    # Does not run on the diminished chord
+        chordTone = shiftedNotes.index(scale[count])
+        chord = (shiftedNotes[(chordTone+fifth)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+4)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+7)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+10)%len(shiftedNotes)])
+        print("The Secondary Dominate of the " + str(count + 1) + " chord is: " + str(chord))
     
+main()
