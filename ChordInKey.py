@@ -1,6 +1,8 @@
 import sys
 from collections import deque
 
+#region Global Variables
+
 notes = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#']
 
 # Not Necessary, but helpful for readablilty
@@ -14,6 +16,10 @@ notes = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#']
 
 # Creates a dictionary containging how to build each key
 modes = {'Major':(0,2,4,5,7,9,11),'Dorian':(0,2,3,5,7,9,10),'Phrygian':(0,1,3,5,7,8,10),'Lydian':(0,2,4,6,7,9,11),'Mixolydian':(0,2,4,5,7,9,10),'Minor':(0,2,3,5,7,8,10),'Locrian':(0,1,3,5,6,8,10)} 
+
+fifth = 7
+
+#endregion
 
 # 
 # Returns the notes of the mode starting at the root note
@@ -48,3 +54,15 @@ scale = notesInScale(modes.get(mode), shiftKeys)
 for count in range(len(scale)):
     chord = (scale[(count+0)%len(scale)], scale[(count+2)%len(scale)], scale[(count+4)%len(scale)])
     print("The " + str(count + 1) + " chord is: " + str(chord))
+
+#print(scale)
+shiftedNotes = list(shiftKeys)
+#print(shiftedNotes)
+
+majDim = 6  # Chords location of the diminished of mode
+for count in range(1,7):    # Starts after the root
+    if count == majDim: continue    # Does not run on the diminished chord
+    chordTone = shiftedNotes.index(scale[count])
+    chord = (shiftedNotes[(chordTone+fifth)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+4)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+7)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+10)%len(shiftedNotes)])
+    print("The Secondary Dominate of the " + str(count + 1) + " chord is: " + str(chord))
+    
