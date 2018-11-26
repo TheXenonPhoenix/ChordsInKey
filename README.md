@@ -28,3 +28,13 @@ The 5 chord is: ('G', 'B', 'D')
 The 6 chord is: ('A', 'C', 'E')
 
 The 7 chord is: ('B', 'D', 'F')
+
+The Secondary Dominate of the 2 chord is: ('A', 'C#', 'E', 'G')
+
+The Secondary Dominate of the 3 chord is: ('B', 'D#', 'F#', 'A')
+
+The Secondary Dominate of the 4 chord is: ('C', 'E', 'G', 'A#')
+
+The Secondary Dominate of the 5 chord is: ('D', 'F#', 'A', 'C')
+
+The Secondary Dominate of the 6 chord is: ('E', 'G#', 'B', 'D')
