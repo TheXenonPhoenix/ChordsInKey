@@ -1,7 +1,9 @@
+import wx
 import sys, time
 from collections import deque
-
+from classes.GUI import GUIClass, MusicApp
 #region Global Variables
+
 
 notes = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#']
 
@@ -50,6 +52,10 @@ def findSecondaryDominates(shiftedNotes, scale, dim):
         chord = (shiftedNotes[(chordTone+fifth)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+4)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+7)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+10)%len(shiftedNotes)])
         print("The Secondary Dominate of the " + str(count + 1) + " chord is: " + str(chord))
 
+def runGUI():
+    gui = GUIClass()
+    gui.GUImain()
+
 def main():
     key = userInput("Key", notes)
     mode = userInput("Mode", modes) ##### Commenting out to run on alpha version
@@ -70,5 +76,6 @@ def main():
 
     findSecondaryDominates(shiftedNotes, scale, dims.get(mode))
     
-main()
-time.sleep(10)
+#main()
+runGUI()
+#time.sleep(10)
