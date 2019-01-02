@@ -1,6 +1,6 @@
 import sys, time
 from collections import deque
-from classes.GUI import GUIClass, MusicApp
+from classes.GUI import GUIClass
 from chordsClasses.ChordInKey import Chords
 
 notes = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#']
