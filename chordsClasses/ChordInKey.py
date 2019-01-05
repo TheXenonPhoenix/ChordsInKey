@@ -44,8 +44,10 @@ class Chords():
     # var scale - the notes in the current key
     # var dim - chord location of the diminished chord in the working mode
     def findSecondaryDominates(self, shiftedNotes, scale, dim, fifth):
+        retString = ""
         for count in range(1,7):        # Starts after the root
             if count == dim: continue   # Does not run on the diminished chord
             chordTone = shiftedNotes.index(scale[count])
             chord = (shiftedNotes[(chordTone+fifth)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+4)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+7)%len(shiftedNotes)], shiftedNotes[(chordTone+fifth+10)%len(shiftedNotes)])
-            print("The Secondary Dominate of the " + str(count + 1) + " chord is: " + str(chord))
+            retString += ("\nThe Secondary Dominate of the " + str(count + 1) + " chord is: " + str(chord))
+        return retString
