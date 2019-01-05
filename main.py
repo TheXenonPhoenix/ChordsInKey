@@ -30,8 +30,6 @@ def handleSubmit():
     
     secDomText.append(findChords(scale))  
     secDomText.append(chordObj.findSecondaryDominates(shiftedNotes, scale, dimsVal, fifth))      
-    #text.append("Note Choice: ", noteChoice, " TypeChoice: ", typeChoice)
-    print("Note Choice: ", noteChoice, " TypeChoice: ", typeChoice)
     
 def getValuesForSecDom(key, mode):
     shiftKeys = deque(notes)        # Allows you to change the root notes of the key
@@ -57,7 +55,6 @@ def main():
     mode = chordObj.userInput("Mode", modes) ##### Commenting out to run on alpha version
     
     print("Here are the chords in " + key, mode)
-
     shiftedNotes, scale, dimsVal = getValuesForSecDom(key, mode)
     print(findChords(scale))
 
@@ -71,10 +68,9 @@ def main():
 ##to run the GUI UI
 #initializes the application's features such as the combo boxes, instructions, and a submit button
 app = App(title="Chords in Key")
-instructionText = Text(app, text = "Instructions: Select a chord and a key from the drop down menus\n\n", size = 10)  
+instructionText = Text(app, text = "Instructions: Select a key and a mode from the drop down menus\n\n", size = 10)  
 noteOptions = Combo(app, options=chordObj.notes)
 typeChordOptions = Combo(app, options=chordObj.typeChords)
 submitButton = PushButton(app, command = handleSubmit, text="Submit")
 secDomText = Text(app, text = "Results: \n", size = 10)
-
 app.display()
